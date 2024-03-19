@@ -26,10 +26,21 @@
                     <td>{{ $project->created_at }}</td>
                     <td>{{ $project->updated_at }}</td>
                     <td>
-                        <div class="d-flex justify-content-end">
+                        <div class="d-flex justify-content-end gap-2 ">
                             <a href="{{ route('admin.projects.show', $project->id) }}" class="btn btn-sm btn-primary">
                                 <i class="fas fa-eye"></i>
                             </a>
+                            <a href="{{ route('admin.projects.edit', $project->id) }}" class="btn btn-sm btn-warning">
+                                <i class="fas fa-pencil"></i>
+                            </a>
+                            <form action="{{ route('admin.projects.destroy', $project->id) }}" method="post"
+                                class="delete-form">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-sm btn-danger">
+                                    <i class="far fa-trash-can"></i>
+                                </button>
+                            </form>
                         </div>
                     </td>
                 </tr>
@@ -42,4 +53,10 @@
             @endforelse
         </tbody>
     </table>
+    {{-- Delete Modal --}}
+    @include('includes.modal_confirmation_delete')
+@endsection
+
+@section('scripts')
+    @vite('resources/js/delete_confirmation.js')
 @endsection
