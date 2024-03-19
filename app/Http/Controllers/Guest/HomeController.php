@@ -10,7 +10,8 @@ class HomeController extends Controller
 {
     public function __invoke()
     {
-        $projects = Project::orderByDesc('created_at')->paginate(5);
+        // Nella home sono visibili solo i progetti completati
+        $projects = Project::whereIsCompleted(true)->orderByDesc('created_at')->paginate(5);
         return view('guest.home', compact('projects'));
     }
 }

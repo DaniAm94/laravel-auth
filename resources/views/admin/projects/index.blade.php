@@ -3,15 +3,29 @@
 @section('title', 'Projects')
 
 @section('content')
-    <header>
+    <header class="d-flex justify-content-between align-items-center">
         <h1 class="text-center">Projects</h1>
+
+        {{-- Filtro --}}
+        <form action="{{ route('admin.projects.index') }}" method="GET">
+            <div class="input-group">
+                <select name="filter" class="form-select">
+                    <option>Tutti</option>
+                    <option @if ($filter === 'completed') selected @endif value="completed">Completati</option>
+                    <option @if ($filter === 'work in progress') selected @endif value="work in progress">In corso</option>
+                </select>
+                <button class="btn btn-outline-secondary" type="submit">Filtra</button>
+            </div>
+        </form>
+
     </header>
     <table class="table table-info table-striped table-hover mt-3 rounded">
         <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">Title</th>
+                <th scope="col">Titolo</th>
                 <th scope="col">Slug</th>
+                <th scope="col">Stato</th>
                 <th scope="col">Data creazione</th>
                 <th scope="col">Ultima modifica</th>
                 <th></th>
@@ -23,6 +37,7 @@
                     <th scope="row">{{ $project->id }}</th>
                     <td>{{ $project->title }}</td>
                     <td>{{ $project->slug }}</td>
+                    <td>{{ $project->is_completed ? 'Completato' : 'In corso' }}</td>
                     <td>{{ $project->created_at }}</td>
                     <td>{{ $project->updated_at }}</td>
                     <td>
