@@ -23,7 +23,7 @@ Route::prefix('/admin')->name('admin.')->middleware('auth')->group(function () {
     // Rotta admin Home
     Route::get('', AdminHomeController::class)->name('home');
     // Rotte admin projects
-    Route::resource('posts', ProjectController::class);
+    Route::resource('projects', ProjectController::class);
 });
 
 
