@@ -53,6 +53,8 @@
             @endforelse
         </tbody>
     </table>
+    {{-- Pagination --}}
+    {{ $projects->links() }}
     {{-- Delete Modal --}}
     @include('includes.modal_confirmation_delete')
 @endsection
