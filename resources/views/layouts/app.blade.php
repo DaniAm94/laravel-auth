@@ -38,10 +38,14 @@
         @include('includes.layouts.navbar')
 
         <main class="container py-3">
+            {{-- Alert --}}
             @include('includes.alert')
             @yield('content')
         </main>
     </div>
+
+    {{-- Toast --}}
+    @include('includes.toast')
 
     {{-- Scripts --}}
     @yield('scripts')
