@@ -28,7 +28,14 @@
                 <th scope="col">Stato</th>
                 <th scope="col">Data creazione</th>
                 <th scope="col">Ultima modifica</th>
-                <th></th>
+                <th>
+                    <div class="d-flex justify-content-end ">
+
+                        <a href="{{ route('admin.projects.create') }}" class="btn btn-sm btn-success ">
+                            <i class="fas fa-plus"></i>
+                        </a>
+                    </div>
+                </th>
             </tr>
         </thead>
         <tbody>
@@ -38,8 +45,8 @@
                     <td>{{ $project->title }}</td>
                     <td>{{ $project->slug }}</td>
                     <td>{{ $project->is_completed ? 'Completato' : 'In corso' }}</td>
-                    <td>{{ $project->created_at }}</td>
-                    <td>{{ $project->updated_at }}</td>
+                    <td>{{ $project->getFormattedDate($project->created_at) }}</td>
+                    <td>{{ $project->getFormattedDate($project->updated_at) }}</td>
                     <td>
                         <div class="d-flex justify-content-end gap-2 ">
                             <a href="{{ route('admin.projects.show', $project->id) }}" class="btn btn-sm btn-primary">
@@ -61,7 +68,7 @@
                 </tr>
             @empty
                 <tr>
-                    <td colspan="6">
+                    <td colspan="7">
                         <h3>Non ci sono progetti al momento</h3>
                     </td>
                 </tr>

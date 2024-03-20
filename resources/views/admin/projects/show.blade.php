@@ -13,8 +13,8 @@
         @endif
         <p>{{ $project->description }}</p>
         <div>
-            <strong>Data creazione: </strong> {{ $project->created_at }}
-            <strong class="ms-3">Ultima modifica: </strong> {{ $project->updated_at }}
+            <strong>Data creazione: </strong> {{ $project->getFormattedDate($project->created_at) }}
+            <strong class="ms-3">Ultima modifica: </strong> {{ $project->getFormattedDate($project->updated_at) }}
         </div>
     </div>
     <hr>
