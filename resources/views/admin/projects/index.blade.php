@@ -10,7 +10,7 @@
         <form action="{{ route('admin.projects.index') }}" method="GET">
             <div class="input-group">
                 <select name="filter" class="form-select">
-                    <option>Tutti</option>
+                    <option value="">Tutti</option>
                     <option @if ($filter === 'completed') selected @endif value="completed">Completati</option>
                     <option @if ($filter === 'work in progress') selected @endif value="work in progress">In corso</option>
                 </select>

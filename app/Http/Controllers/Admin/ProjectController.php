@@ -17,10 +17,9 @@ class ProjectController extends Controller
         $filter = $request->query('filter');
         // Preparo la query dei progetti ordinata per data di modifica e di creazione
         $query = Project::orderByDesc('updated_at')->orderByDesc('created_at');
-        if ($filter === 'completed') {
-            $query->whereIsCompleted(true);
-        } elseif ($filter === 'work in progress') {
-            $query->whereIsCompleted(false);
+        if ($filter) {
+            $value = $filter === 'completed';
+            $query->whereIsCompleted($value);
         }
         // pagino 10 progetti alla volta
         $projects = $query->paginate(10)->withQueryString();
