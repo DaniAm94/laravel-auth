@@ -24,7 +24,11 @@ Route::get('/projects/{slug}', [GuestProjectController::class, 'show'])->name('g
 Route::prefix('/admin')->name('admin.')->middleware('auth')->group(function () {
     // Rotta admin Home
     Route::get('', AdminHomeController::class)->name('home');
+
     // Rotte admin projects
+    Route::get('/posts/trash', [AdminProjectController::class, 'trash'])->name('projects.trash');
+    Route::patch('/posts/{project}/restore', [AdminProjectController::class, 'restore'])->name('projects.restore')->withTrashed();
+    Route::delete('/posts/{project}/drop', [AdminProjectController::class, 'drop'])->name('projects.drop')->withTrashed();
     Route::resource('projects', AdminProjectController::class);
 });
 

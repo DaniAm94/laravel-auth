@@ -17,4 +17,8 @@ class Project extends Model
     {
         return Carbon::create($this->$column)->format($format);
     }
+    public function getAbstract($length)
+    {
+        return substr($this->description, 0, $length) . '...';
+    }
 }

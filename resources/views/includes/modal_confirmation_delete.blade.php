@@ -8,7 +8,7 @@
                     aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                Sei sicuro di voler cancellare il progetto?
+                Sei sicuro di voler cancellare il progetto
             </div>
             <div class="modal-footer">
                 <button type="submit" class="btn btn-primary confirm-btn">Conferma</button>
