@@ -1,4 +1,4 @@
-<div class="modal fade show text-white " id="delete-modal" tabindex="-1" data-bs-theme="dark">
+<div class="modal fade text-white " id="delete-modal" tabindex="-1" data-bs-theme="dark">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">

@@ -11,7 +11,6 @@ const closeButton = document.getElementById('button-close');
 deleteForms.forEach(form => {
     form.addEventListener('submit', e => {
         e.preventDefault();
-        modal.style = "display: block"
         modalText.innerText += ` ${form.dataset.title}?`;
         confirmButton.addEventListener('click', () => {
             form.submit();
