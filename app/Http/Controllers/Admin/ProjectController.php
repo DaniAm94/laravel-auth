@@ -86,9 +86,11 @@ class ProjectController extends Controller
         if (Arr::exists($data, 'image')) {
             // Controllo se c'era già un'immagine e la cancello
             if ($project->image) Storage::delete($project->image);
+            $extension = $data['image']->extension(); // restituisce l'estensione del file senza punto
 
             // Lo salvo e prendo l'url
-            $img_url = Storage::putFile('project_images', $data['image']);
+            $img_url = Storage::putFileAs('project_images', $data['image'], "{$data['slug']}.$extension");
+
             $project->image = $img_url;
         }
         $project->fill($data);
