@@ -47,7 +47,8 @@
                                 <i class="fas fa-pencil"></i>
                             </a>
                             <form action="{{ route('admin.projects.drop', $project->id) }}" method="POST"
-                                class="delete-form" data-title="{{ $project->title }}">
+                                class="delete-form" data-title="{{ $project->title }}" data-bs-toggle="modal"
+                                data-bs-target="#delete-modal">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-sm btn-danger">
