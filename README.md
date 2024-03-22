@@ -37,3 +37,15 @@
 - tutte le cosette varie che abbiamo visto in classe!
 ### `SUPER BONUS:`
 - implementare la modale di bootstrap per la cancellazione
+
+---
+
+# Parte 3
+
+# Laravel Boolfolio - Upload Immagini
+## nome repo: laravel-auth  (sempre la stessa)
+### Descrizione:
+    Aggiungiamo la possibilità di inserire un immagine per i progetti. L'immagine deve essere inserita come file, come abbiamo visto in classe.
+    Se non avevate già previsto un campo per l'immagine nella tabella dei projects potete aggiungerlo con una migration 
+### `BONUS:`
+- tutte le cosette varie che abbiamo visto in classe!
