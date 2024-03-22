@@ -8,14 +8,22 @@ const confirmButton = document.querySelector('.confirm-btn');
 // Pulsante chiusura nella modale
 const closeButton = document.getElementById('button-close');
 
+let activeForm = null;
+
 deleteForms.forEach(form => {
     form.addEventListener('submit', e => {
         e.preventDefault();
         modalText.innerText += ` ${form.dataset.title}?`;
-        confirmButton.addEventListener('click', () => {
-            form.submit();
-        })
+        activeForm = form;
+
     })
+})
+confirmButton.addEventListener('click', () => {
+    if (activeForm) activeForm.submit();
+})
+modal.addEventListener('hidden.bs.modal', () => {
+
+    activeForm = null;
 })
 closeButton.addEventListener('click', () => {
     modal.style = "display: none"
