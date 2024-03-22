@@ -21,4 +21,8 @@ class Project extends Model
     {
         return substr($this->description, 0, $length) . '...';
     }
+    public function printImage()
+    {
+        return asset('storage/' . $this->image);
+    }
 }
