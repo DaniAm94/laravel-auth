@@ -9,7 +9,8 @@
     <hr>
     <div class="clearfix">
         @if ($project->image)
-            <img src="{{ $project->image }}" alt="{{ $project->title }}" class="me-3 float-start">
+            <img src="{{ asset('storage/' . $project->image) }}" alt="{{ $project->title }}"
+                class="me-3 float-start img-fluid ">
         @endif
         <p>{{ $project->description }}</p>
         <div>
@@ -28,7 +29,7 @@
                 <i class="fas fa-pencil"></i>
                 Modifica
             </a>
-            <form action="{{ route('admin.projects.destroy', $project->id) }}" method="post" class="delete-form">
+            <form action="{{ route('admin.projects.destroy', $project->id) }}" method="POST" class="delete-form">
                 @csrf
                 @method('DELETE')
                 <button type="submit" class="btn btn-sm btn-danger">

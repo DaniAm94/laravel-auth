@@ -8,6 +8,7 @@ use App\Http\Requests\UpdateProjectRequest;
 use App\Models\Project;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class ProjectController extends Controller
@@ -48,6 +49,10 @@ class ProjectController extends Controller
         $data['is_completed'] = Arr::exists($data, 'is_completed');
         $project = new Project();
         $project->fill($data);
+        if (Arr::exists($data, 'image')) {
+            $img_url = Storage::putFile('project_images', $data['image']);
+            $project->image = $img_url;
+        }
         $project->save();
         return to_route('admin.projects.show', $project->id);
     }
@@ -76,6 +81,15 @@ class ProjectController extends Controller
         $data = $request->validated();
         $data['slug'] = Str::slug($data['title']);
         $data['is_completed'] = Arr::exists($data, 'is_completed');
+        // Controllo se mi arriva un file
+        if (Arr::exists($data, 'image')) {
+            // Controllo se c'era già un'immagine e la cancello
+            if ($project->image) Storage::delete($project->image);
+
+            // Lo salvo e prendo l'url
+            $img_url = Storage::putFile('project_images', $data['image']);
+            $project->image = $img_url;
+        }
         $project->fill($data);
         $project->save();
         return to_route('admin.projects.show', $project->id);
@@ -109,7 +123,9 @@ class ProjectController extends Controller
     }
     public function drop(Project $project)
     {
+        if ($project->image) Storage::delete($project->image);
         $project->forceDelete();
+
         return to_route('admin.projects.trash')->with('type', 'warning')->with('message', 'Progetto eliminato definitivamente');
     }
 }

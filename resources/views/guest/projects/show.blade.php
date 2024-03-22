@@ -12,7 +12,7 @@
             <div class="row">
                 @if ($project->image)
                     <div class="col-3">
-                        <img src="{{ $project->image }}" alt="{{ $project->title }}">
+                        <img class="img-fluid" src="{{ asset('storage/' . $project->image) }}" alt="{{ $project->title }}">
                     </div>
                 @endif
                 <div class="col">

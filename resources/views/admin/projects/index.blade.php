@@ -59,7 +59,7 @@
                             <a href="{{ route('admin.projects.edit', $project->id) }}" class="btn btn-sm btn-warning">
                                 <i class="fas fa-pencil"></i>
                             </a>
-                            <form action="{{ route('admin.projects.destroy', $project->id) }}" method="post"
+                            <form action="{{ route('admin.projects.destroy', $project->id) }}" method="POST"
                                 class="delete-form" data-title="{{ $project->title }}" data-bs-toggle="modal"
                                 data-bs-target="#delete-modal">
                                 @csrf

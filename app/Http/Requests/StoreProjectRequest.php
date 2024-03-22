@@ -24,7 +24,7 @@ class StoreProjectRequest extends FormRequest
         return [
             'title' => 'required|string|unique:projects|min:10|max:40',
             'description' => 'required|string',
-            'image' => 'nullable|url',
+            'image' => 'nullable|image|mimes:png,jpg,jpeg',
             'is_completed' => 'nullable|boolean'
         ];
     }
@@ -36,7 +36,8 @@ class StoreProjectRequest extends FormRequest
             'title.min' => 'Il titolo deve essere almeno di :min caratteri',
             'title.max' => 'Il titolo non può superare i :max caratteri',
             'description.required' => 'E\' necessario inserire una descrizione',
-            'image.url' => 'Il formato dell\'immagine non è corretto',
+            'image.image' => 'Il file deve essere un immagine',
+            'image.mimes' => 'Il file immagine può avere estensioni jpg, jpeg, png',
             'is_completed.boolean' => 'Lo stato deve essere un dato booleano'
         ];
     }

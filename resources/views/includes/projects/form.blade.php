@@ -1,8 +1,10 @@
 @if ($project->exists)
-    <form class="row row-gap-4 " action="{{ route('admin.projects.update', $project->id) }}" method="POST">
+    <form class="row row-gap-4 " action="{{ route('admin.projects.update', $project->id) }}" method="POST"
+        enctype="multipart/form-data">
         @method('PUT')
     @else
-        <form class="row row-gap-4 " action="{{ route('admin.projects.store') }}" method="POST">
+        <form class="row row-gap-4 " action="{{ route('admin.projects.store') }}" method="POST"
+            enctype="multipart/form-data">
 @endif
 
 @csrf
@@ -40,7 +42,7 @@
 </div>
 <div class="col-11 d-flex flex-column justify-content-center">
     <label for="image" class="form-label">Immagine</label>
-    <input type="url" name="image"
+    <input type="file" name="image"
         class="form-control @error('image') is-invalid @elseif(old('image', '')) is-valid @enderror"
         id="image" value="{{ old('image', $project->image) }}" placeholder="http: / https: ...">
     @error('image')
@@ -48,12 +50,14 @@
             {{ $message }}
         </div>
     @else
-        <div class="form-text">Inserisci un url valido</div>
+        <div class="form-text">Carica un file immagine</div>
     @enderror
 </div>
 <div class="col-1  d-flex justify-content-center align-items-center">
     <figure class="mb-0" id="preview-container">
-        <img src="{{ $project->image ?? 'https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM=' }}"
+        <img src="{{ old('image', $project->image)
+            ? asset('storage/' . old('image', $project->image))
+            : 'https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM=' }}"
             alt="{{ old('title', '') }}" class="img-fluid" id="preview">
     </figure>
 </div>
