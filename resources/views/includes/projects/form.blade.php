@@ -56,7 +56,7 @@
 <div class="col-1  d-flex justify-content-center align-items-center">
     <figure class="mb-0" id="preview-container">
         <img src="{{ old('image', $project->image)
-            ? asset('storage/' . old('image', $project->image))
+            ? $project->printImage()
             : 'https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM=' }}"
             alt="{{ old('title', '') }}" class="img-fluid" id="preview">
     </figure>
