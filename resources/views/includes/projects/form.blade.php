@@ -42,9 +42,17 @@
 </div>
 <div class="col-11 d-flex flex-column justify-content-center">
     <label for="image" class="form-label">Immagine</label>
+
+    {{-- Fake input file --}}
+    <div @class(['input-group', 'd-none' => !$project->image]) id="fake-image-field">
+        <button class="btn btn-outline-secondary text-white" type="button" id="change-image-btn">Scegli il
+            file</button>
+        <input type="text" class="form-control" disabled value="{{ old('image', $project->image) }}">
+    </div>
+
     <input type="file" name="image"
-        class="form-control @error('image') is-invalid @elseif(old('image', '')) is-valid @enderror"
-        id="image" value="{{ old('image', $project->image) }}" placeholder="http: / https: ...">
+        class="form-control @if ($project->image) d-none @endif @error('image') is-invalid @elseif(old('image', '')) is-valid @enderror"
+        id="image" placeholder="http: / https: ...">
     @error('image')
         <div class="invalid-feedback">
             {{ $message }}
