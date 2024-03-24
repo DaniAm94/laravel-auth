@@ -131,4 +131,14 @@ class ProjectController extends Controller
 
         return to_route('admin.projects.trash')->with('type', 'warning')->with('message', 'Progetto eliminato definitivamente');
     }
+    public function massiveDrop()
+    {
+        $projects = Project::onlyTrashed()->get();
+        foreach ($projects as $project) {
+            if ($project->image) Storage::delete($project->image);
+            $project->forceDelete();
+        }
+
+        return to_route('admin.projects.trash')->with('type', 'warning')->with('message', 'Progetti eliminati definitivamente');
+    }
 }

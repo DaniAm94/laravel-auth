@@ -22,9 +22,15 @@
                     <div class="d-flex justify-content-end ">
 
                         {{-- # TODO --}}
-                        <a href="#" class="btn btn-sm btn-danger ">
-                            <i class="fas fa-trash me-2"></i>Svuota cestino
-                        </a>
+
+                        <form action="{{ route('admin.projects.massive-drop') }}" method="POST" class="delete-form"
+                            data-title="" data-bs-toggle="modal" data-bs-target="#delete-modal">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-sm btn-danger">
+                                <i class="fas fa-trash me-2 "></i>Svuota cestino
+                            </button>
+                        </form>
                     </div>
                 </th>
             </tr>

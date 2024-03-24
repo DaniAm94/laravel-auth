@@ -13,7 +13,11 @@ let activeForm = null;
 deleteForms.forEach(form => {
     form.addEventListener('submit', e => {
         e.preventDefault();
-        modalText.innerText += ` ${form.dataset.title}?`;
+        if (form.dataset.title) {
+            modalText.innerText += ` ${form.dataset.title}?`;
+        } else {
+            modalText.innerText = "Tutti i progetti saranno cancellati definitivamente. Vuoi continuare?";
+        }
         activeForm = form;
 
     })
