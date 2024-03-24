@@ -141,4 +141,13 @@ class ProjectController extends Controller
 
         return to_route('admin.projects.trash')->with('type', 'warning')->with('message', 'Progetti eliminati definitivamente');
     }
+
+    public function toggleStatus(Project $project)
+    {
+        $project->is_completed = !$project->is_completed;
+        $project->save();
+        $action = $project->is_completed ? '"completato"' : '"in corso"';
+        $type = $project->is_completed ? 'success' : 'info';
+        return back()->with('message', "Lo status del progetto \"$project->title\" è stato cambiato in $action")->with('type', "$type");
+    }
 }

@@ -30,6 +30,7 @@ Route::prefix('/admin')->name('admin.')->middleware('auth')->group(function () {
     Route::patch('/projects/{project}/restore', [AdminProjectController::class, 'restore'])->name('projects.restore')->withTrashed();
     Route::delete('/projects/{project}/drop', [AdminProjectController::class, 'drop'])->name('projects.drop')->withTrashed();
     Route::delete('/projects/massive-drop', [AdminProjectController::class, 'massiveDrop'])->name('projects.massive-drop');
+    Route::patch('/projects/{project}/toggle-status', [AdminProjectController::class, 'toggleStatus'])->name('projects.toggle-status');
     Route::resource('projects', AdminProjectController::class)->withTrashed(['show', 'edit']);
 });
 

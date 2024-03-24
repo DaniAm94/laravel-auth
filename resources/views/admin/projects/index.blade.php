@@ -26,7 +26,7 @@
                 <th scope="col">#</th>
                 <th scope="col">Titolo</th>
                 <th scope="col">Slug</th>
-                <th scope="col">Stato</th>
+                <th scope="col">Completato</th>
                 <th scope="col">Data creazione</th>
                 <th scope="col">Ultima modifica</th>
                 <th>
@@ -48,7 +48,21 @@
                     <th scope="row">{{ $project->id }}</th>
                     <td>{{ $project->title }}</td>
                     <td>{{ $project->slug }}</td>
-                    <td>{{ $project->is_completed ? 'Completato' : 'In corso' }}</td>
+                    <td>
+                        <div class="form-check form-switch">
+                            <form action="{{ route('admin.projects.toggle-status', $project->id) }}" method="POST"
+                                class="toggle-status" onclick="this.submit()">
+                                @csrf
+                                @method('PATCH')
+                                <input class="form-check-input" type="checkbox" role="button"
+                                    id="toggle-status-btn-{{ $project->id }}"
+                                    @if ($project->is_completed) checked @endif>
+                                <label class="form-check-label"
+                                    for="toggle-status-btn-{{ $project->id }}">{{ $project->is_completed ? 'Completato' : 'In corso' }}</label>
+                            </form>
+                        </div>
+
+                    </td>
                     <td>{{ $project->getFormattedDate($project->created_at) }}</td>
                     <td>{{ $project->getFormattedDate($project->updated_at) }}</td>
                     <td>
