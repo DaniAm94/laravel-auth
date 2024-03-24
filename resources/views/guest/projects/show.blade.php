@@ -6,7 +6,7 @@
     <div class="card my-5">
         <div class="card-header d-flex justify-content-between align-items-center ">
             {{ $project->title }}
-            <a href="" class="btn btn-sm btn-primary ">Vedi</a>
+            <a href="{{ route('guest.home') }}" class="btn btn-sm btn-primary ">Torna alla lista</a>
         </div>
         <div class="card-body">
             <div class="row">
